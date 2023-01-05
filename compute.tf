@@ -43,33 +43,65 @@ resource "aws_security_group" "webserver-sg" {
     "Name" = "Application-1-sg-nginx"
   }
 }
-data "aws_ami" "windows-2019" {
+data "aws_ami" "windows_server_latest_AMI" {
   most_recent = true
-  owners      = ["amazon"]
+  owners      = ["801119661308"]
+
   filter {
     name   = "name"
-    values = ["Windows_Server-2019-English-Full-Base*"]
+    values = ["Windows_Server-2016-English-Full-Base-*"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
 }
+
+data "aws_ami" "amazon_ami" {
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-2.0.20220606.1-x86_64-gp2"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  most_recent = true
+  owners      = ["amazon"]
+}
+
+# Bootstrapping PowerShell Script
+data "template_file" "windows-userdata" {
+  template = <<EOF
+<powershell>
+# Install IIS
+Install-WindowsFeature -name Web-Server -IncludeManagementTools;
+# Restart machine
+shutdown -r -t 10;
+</powershell>
+EOF
+}
 resource "aws_instance" "app-server1" {
-  instance_type          = "t2.micro"
-  ami                    = data.aws_ami.windows-2019.id
+  instance_type          = "t2.small"
+  ami                    = data.aws_ami.windows_server_latest_AMI.id
   vpc_security_group_ids = [aws_security_group.webserver-sg.id]
   subnet_id              = aws_subnet.private-2a.id
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address
-  associate_public_ip_address = false
+  associate_public_ip_address = true
+  #user_data = file("user_data/user_data.tpl")
+  user_data = data.template_file.windows-userdata.rendered 
   tags = {
     Name = "app-server-1"
   }
-  user_data = file("user_data/user_data.ps1")
 }
 resource "aws_instance" "app-server2" {
-  instance_type               = "t2.micro"
-  ami                         = data.aws_ami.windows-2019.id
+  instance_type               = "t2.small"
+  ami                         = data.aws_ami.windows_server_latest_AMI.id
   vpc_security_group_ids      = [aws_security_group.webserver-sg.id]
   subnet_id                   = aws_subnet.private-2b.id
-  associate_public_ip_address = false
-  user_data                   = file("user_data/user_data.ps1")
+  associate_public_ip_address = true
+  #user_data                   = file("user_data/user_data.tpl")
+  user_data = data.template_file.windows-userdata.rendered 
   tags = {
     Name = "app-server-2"
   }

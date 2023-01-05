@@ -4,6 +4,14 @@ resource "aws_lb_target_group" "front" {
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.this.id
+  health_check {
+    path                = "/"
+    timeout             = 20
+    protocol            = "HTTP"
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
+    matcher             = "200-499"
+  }
 }
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment
 resource "aws_lb_target_group_attachment" "attach-app1" {
@@ -22,8 +30,8 @@ resource "aws_lb_listener" "front_end" {
   port              = "443"
   protocol          = "HTTPS"
   certificate_arn   = aws_acm_certificate.cert.arn
-  #   port              = "80"
-  #   protocol          = "HTTP"
+  # port              = "80"
+  # protocol          = "HTTP"
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.front.arn
@@ -69,7 +77,3 @@ resource "aws_acm_certificate" "cert" {
   private_key      = tls_private_key.tls_private_key.private_key_pem
   certificate_body = tls_self_signed_cert.tls_self_signed_cert.cert_pem
 }
-# resource "aws_lb_listener_certificate" "cert" {
-#   listener_arn    = aws_lb_listener.front_end.arn
-#   certificate_arn = aws_acm_certificate.cert.arn
-# }
