@@ -4,9 +4,9 @@ resource "aws_security_group" "http-sg" {
   vpc_id      = aws_vpc.this.id
 
   ingress {
-    description = "from my ip range"
-    from_port   = "80"
-    to_port     = "80"
+    description = "from Internet range"
+    from_port   = "443"
+    to_port     = "443"
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -38,7 +38,7 @@ resource "aws_security_group" "webserver-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   tags = {
     "Name" = "Application-1-sg-nginx"
   }
@@ -61,7 +61,7 @@ resource "aws_instance" "app-server1" {
   vpc_security_group_ids = [aws_security_group.webserver-sg.id]
   subnet_id              = aws_subnet.private-2a.id
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   tags = {
     Name = "app-server-1"
   }
@@ -72,7 +72,7 @@ resource "aws_instance" "app-server2" {
   ami                         = data.aws_ami.amazon_ami.id
   vpc_security_group_ids      = [aws_security_group.webserver-sg.id]
   subnet_id                   = aws_subnet.private-2b.id
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   user_data                   = file("user_data/user_data.tpl")
   tags = {
     Name = "app-server-2"
