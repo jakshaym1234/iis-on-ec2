@@ -26,11 +26,9 @@ jobs:
     - name: Terraform Init
       id: init
       run: |
-        cd terraform
-        terraform init -backend-config="bucket=${{ secrets.STATE_BUCKET_NAME }}" -backend-config="key=${{ secrets.STATE_PATH }}"
+        terraform init
 
     - name: Terraform Destroy
       id: destroy
       run: |
-        cd terraform
         terraform destroy -auto-approve

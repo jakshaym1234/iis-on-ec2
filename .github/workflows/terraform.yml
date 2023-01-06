@@ -32,15 +32,12 @@ jobs:
     - name: Terraform Init
       id: init
       run: |
-        cd terraform
-        terraform init -backend-config="bucket=${{ secrets.STATE_BUCKET_NAME }}" -backend-config="key=${{ secrets.STATE_PATH }}"
+        terraform init
     - name: Terraform Plan
       id: Plan
       run: |
-        cd terraform
         terraform plan
     - name: Terraform Apply
       id: Apply
       run: |
-        cd terraform
         terraform apply -auto-approve
