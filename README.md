@@ -11,7 +11,7 @@
 
 ![image](https://user-images.githubusercontent.com/55613494/211007684-4889c5a3-06f8-4f0a-9b27-ec37e32904d4.png)
 
-## Thoughts behind:
+## Thoughts behind and Approach?
 
 ### - Keeping the Solution Secure 
       1. Putting in correct Network Control
