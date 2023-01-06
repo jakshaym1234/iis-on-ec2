@@ -1,4 +1,4 @@
-name: Terraform INIT PLAN APPLY with HELM CHART
+name: Terraform INIT PLAN APPLY
 
 on:
   workflow_dispatch:
