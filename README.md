@@ -24,9 +24,10 @@
       2. Having Health Checks
 
 ### - DevOps enabled
-      1. Having Deployment Pipelines to create Infra
-      2. Having Pipeline to clean up Infra
-      3, Having Setup of the IIS servers automated via "userdata" in EC2
+      1. Having IaC in Version Control (Github)
+      2. Having Deployment Pipelines to create Infra
+      3. Having Pipeline to clean up Infra
+      4. Having Setup of the IIS servers automated via PowerShell Script in "userdata" of EC2 instance.
       
 ## Security Measure Taken
 
