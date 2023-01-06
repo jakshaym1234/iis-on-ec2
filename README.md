@@ -14,9 +14,9 @@
 ## Thoughts behind and Approach?
 
 ### - Keeping the Solution Secure 
-      1. Putting in correct Network Control
-      2. Allowing Traffic on Described Ports only
-      3. ALB with Cert (WAF for the furture)
+      1. Secure Network Control
+      2. Allowing Traffic on required ports only
+      3. ALB with Cert (WAF for the future)
       4. Security Groups to Allow Correct Network Flow
       
 ### - Keeping it Failure/Fault Resistent
@@ -32,14 +32,14 @@
 
 ### - Securing DevOps
       1. No Secrets in Pipelines
-      2. Storing State File Safely
-      3. Secrets stored in Github
+      2. Secrets for Pipelines stored in Github
+      3. Storing Terraform State File safely and remotely in S3 Buckets with encryption 
       4. Terraform Best Practices
       
 ### - Securing Infra
-      1. Putting in correct Network Control
-      2. Allowing Traffic on Described Ports only
-      3. ALB with Cert (WAF for the furture)
+      1. Secure Network Controls
+      2. Allowing Traffic on required ports only
+      3. ALB with Cert (WAF for the future)
       4. Security Groups to Allow Correct Network Flow
       
 ## Improvements:
