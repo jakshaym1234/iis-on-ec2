@@ -42,5 +42,9 @@
       3. ALB with Cert (WAF for the furture)
       4. Security Groups to Allow Correct Network Flow
       
+## Improvements:
 
+   1. WAF for ALB
+   2. Better way for config management of servers e.g. Ansible, Packer
+   3. Post Deploy Testing
 
