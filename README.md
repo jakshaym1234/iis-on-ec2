@@ -1,6 +1,12 @@
 # Hosting Windows IIS on EC2
 ## General Impression?
-
+   1. Good Test of AWS
+   2. Good Test of Networking
+   3. Good Test if IaC Terraform
+   4. Good Test of Secure Architecture
+   5. Good Test of DevOps Enablement
+   6. Good Test of Scritping Skills
+  
 ## Architecture:
 
 ![image](https://user-images.githubusercontent.com/55613494/211007684-4889c5a3-06f8-4f0a-9b27-ec37e32904d4.png)
