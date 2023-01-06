@@ -76,20 +76,22 @@ data "template_file" "windows-userdata" {
 <powershell>
 # Install IIS
 Install-WindowsFeature -name Web-Server -IncludeManagementTools;
+# Create HTML File
+New-Item -Path C:\inetpub\wwwroot\index.html -ItemType File -Value "Welcome to Server Name: $env:computername OS: $env:os" -Force
 # Restart machine
 shutdown -r -t 10;
 </powershell>
 EOF
 }
+
 resource "aws_instance" "app-server1" {
   instance_type          = "t2.small"
   ami                    = data.aws_ami.windows_server_latest_AMI.id
   vpc_security_group_ids = [aws_security_group.webserver-sg.id]
   subnet_id              = aws_subnet.private-2a.id
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#associate_public_ip_address
-  associate_public_ip_address = true
-  #user_data = file("user_data/user_data.tpl")
-  user_data = data.template_file.windows-userdata.rendered 
+  associate_public_ip_address = false
+  user_data                   = data.template_file.windows-userdata.rendered
   tags = {
     Name = "app-server-1"
   }
@@ -99,9 +101,8 @@ resource "aws_instance" "app-server2" {
   ami                         = data.aws_ami.windows_server_latest_AMI.id
   vpc_security_group_ids      = [aws_security_group.webserver-sg.id]
   subnet_id                   = aws_subnet.private-2b.id
-  associate_public_ip_address = true
-  #user_data                   = file("user_data/user_data.tpl")
-  user_data = data.template_file.windows-userdata.rendered 
+  associate_public_ip_address = false
+  user_data                   = data.template_file.windows-userdata.rendered
   tags = {
     Name = "app-server-2"
   }
