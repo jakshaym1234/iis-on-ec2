@@ -20,6 +20,7 @@
 ### - DevOps enabled
       1. Having Deployment Pipelines to create Infra
       2. Having Pipeline to clean up Infra
+      3, Having Setup of the IIS servers automated via "userdata" in EC2
       
 ## Security Measure Taken
 
