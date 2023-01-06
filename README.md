@@ -1,4 +1,5 @@
 # Hosting Windows IIS on EC2
+## General Impression?
 
 ## Architecture:
 
@@ -7,31 +8,32 @@
 ## Thoughts behind:
 
 ### - Keeping the Solution Secure 
-      Putting in correct Network Control
-      Allowing Traffic on Described Ports only
-      ALB with Cert (WAF for the furture)
-      Security Groups to Allow Correct Network Flow
+      1. Putting in correct Network Control
+      2. Allowing Traffic on Described Ports only
+      3. ALB with Cert (WAF for the furture)
+      4. Security Groups to Allow Correct Network Flow
       
 ### - Keeping it Failure/Fault Resistent
-      Deploying to 2 different Availibity Zones
-      Having Health Checks
+      1. Deploying to 2 different Availibity Zones
+      2. Having Health Checks
 
 ### - DevOps enabled
-      Having Deployment Pipelines to create Infra
+      1. Having Deployment Pipelines to create Infra
+      2. Having Pipeline to clean up Infra
       
 ## Security Measure Taken
 
 ### - Securing DevOps
-      No Secrets in Pipelines
-      Storing State File Safely
-      Secrets stored in Github
-      Terraform Best Practices
+      1. No Secrets in Pipelines
+      2. Storing State File Safely
+      3. Secrets stored in Github
+      4. Terraform Best Practices
       
 ### - Securing Infra
-      Putting in correct Network Control
-      Allowing Traffic on Described Ports only
-      ALB with Cert (WAF for the furture)
-      Security Groups to Allow Correct Network Flow
+      1. Putting in correct Network Control
+      2. Allowing Traffic on Described Ports only
+      3. ALB with Cert (WAF for the furture)
+      4. Security Groups to Allow Correct Network Flow
       
 
 
