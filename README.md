@@ -6,6 +6,32 @@
 
 ## Thoughts behind:
 
-### - Keeping the Solution secure 
+### - Keeping the Solution Secure 
+      Putting in correct Network Control
+      Allowing Traffic on Described Ports only
+      ALB with Cert (WAF for the furture)
+      Security Groups to Allow Correct Network Flow
+      
 ### - Keeping it Failure/Fault Resistent
+      Deploying to 2 different Availibity Zones
+      Having Health Checks
+
+### - DevOps enabled
+      Having Deployment Pipelines to create Infra
+      
+## Security Measure Taken
+
+### - Securing DevOps
+      No Secrets in Pipelines
+      Storing State File Safely
+      Secrets stored in Github
+      Terraform Best Practices
+      
+### - Securing Infra
+      Putting in correct Network Control
+      Allowing Traffic on Described Ports only
+      ALB with Cert (WAF for the furture)
+      Security Groups to Allow Correct Network Flow
+      
+
 
