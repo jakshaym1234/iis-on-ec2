@@ -6,6 +6,6 @@
 
 ## Thoughts behind:
 
-# - Keeping the Solution secure.
-# - Keeping it Failure/Fault Resistent
+### - Keeping the Solution secure 
+### - Keeping it Failure/Fault Resistent
 
