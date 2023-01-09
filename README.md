@@ -2,7 +2,7 @@
 ## General Impression?
    1. Good Test of AWS
    2. Good Test of Networking
-   3. Good Test if IaC Terraform
+   3. Good Test of IaC Terraform
    4. Good Test of Secure Architecture
    5. Good Test of DevOps Enablement
    6. Good Test of Scritping Skills
